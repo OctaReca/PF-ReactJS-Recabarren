@@ -6,6 +6,7 @@ import Category from './pages/Category'; // Cambiar aquí
 import Sidebear from './components/Sidebar';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Checkout from './components/Checkout';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path='/' element={<Home />} />
           <Route path='/category/:category' element={<Category />} />
           <Route path='/product/:id' element={<ProductDetails />} />
+          <Route path='/Checkout' element={<Checkout />} />
         </Routes>
         <Sidebear />
         <Footer />
