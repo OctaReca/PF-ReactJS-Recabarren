@@ -31,7 +31,7 @@ const Checkout = () => {
     addDoc(ordersCollection, order).then(({ id }) => {
       Swal.fire(
         "¡Thank you for your purchase!",
-        `Your order number is ${id}`,
+        `Your order number is: ${id}`,
         'success'
       )
       clearCart();
