@@ -11,7 +11,7 @@ const Home = () => {
   //get only men`s & women`s clothing caregory
   const filteredProducts = products.filter((item) => {
     return (
-      item.category === "men's clothing" || item.category === "women's clothing" || item.category === "jewelery"
+      item.category === "men's" || item.category === "women's" || item.category === "jewelery"
     )
   });
 

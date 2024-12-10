@@ -49,13 +49,15 @@ const Checkout = () => {
     }
   };
   return (
-    <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div className="max-w-7xl min-h-screen mx-auto py-6 sm:px-6 lg:px-8">
       <div className="px-4 py-6 sm:px-0">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-6">Checkout</h1>
-        <table className="w-full text-left border-collapse flex justify-start">
+        <div className="flex items-center justify-center">
+          <h1 className="text-3xl font-bold text-gray-900 mt-16 text-center border-b-2 border-black rounded-lg">Checkout</h1>
+        </div>
+        <table className="w-full text-left border-collapse flex justify-center text-xl my-10">
           <thead>
-            <tr>
-              <th className="py-3 px-4 font-semibold text-gray-700 border-b">
+            <tr >
+              <th className="py-3 px-4 font-semibold text-gray-700 border-b-2">
                 Producto
               </th>
             </tr>
@@ -65,7 +67,7 @@ const Checkout = () => {
               <CartItem key={item.id} item={item} />
             ))}
             <tr>
-              <td className="py-3 px-4 border-b font-semibold">Total:</td>
+              <td className="py-3 px-4 border-b-2 font-semibold">Total:</td>
               <td >${total}</td>
             </tr>
           </tbody>
@@ -132,7 +134,7 @@ const Checkout = () => {
               />
             </label>
             <button
-              className="bg-primary flex p-4 justify-center items-center text-white w-full font-medium"
+              className="bg-primary flex p-4 justify-center items-center text-white w-full font-medium rounded-lg transition duration-300 hover:scale-105"
               onClick={handleClick}
             >
               Comprar

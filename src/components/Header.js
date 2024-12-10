@@ -26,9 +26,8 @@ const Header = () => {
   });
   return (
     <header
-      className={`${
-        isActive ? "bg-white py-4 shadow-md" : "bg-none py-6"
-      } fixed w-full z-10 transition-all`}
+      className={`${isActive ? "bg-white py-4 shadow-md" : "bg-none py-6"
+        } fixed w-full z-10 transition-all`}
     >
       <div className="container mx-auto flex items-center justify-between h-full">
         {/* Logo */}
@@ -37,15 +36,11 @@ const Header = () => {
             <img className="w-[40px]" src={Logo} alt="" />
           </div>
         </Link>
-        <nav className="flex items-center">
-          <ul className="flex justify-end space-x-6 font-semibold text-lg">
-            {categories.map((category) => (
-              <li key={category}>
-                <Link to={`/category/${category}`}>{category}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {categories.map((category) => (
+          <div key={category}>
+            <Link to={`/category/${category}`} className="text-lg font-medium md:text-xl">{category}</Link>
+          </div>
+        ))}
         {/* cart  */}
         <div
           onClick={() => setIsOpen(!isOpen)}
