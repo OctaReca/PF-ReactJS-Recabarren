@@ -11,7 +11,7 @@ const Checkout = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
-  const { cart, total, clearCart} = useContext(CartContext);
+  const { cart, total, clearCart } = useContext(CartContext);
 
   const order = {
     buyer: {
@@ -28,19 +28,23 @@ const Checkout = () => {
     event.preventDefault();
     const db = getFirestore();
     const ordersCollection = collection(db, "orders");
-    addDoc(ordersCollection, order).then(({ id }) => {
-      Swal.fire(
-        "¡Thank you for your purchase!",
-        `Your order number is: ${id}`,
-        'success'
-      )
-      clearCart();
-      setName("");
-      setSurname("");
-      setPhone("");
-      setEmail("");
-      setConfirmEmail("");
-    });
+    if(name === "" || surname === "" || phone === "" || email === "" || confirmEmail === "") {
+      alert("Por favor complete todos los campos")
+    } else {
+      addDoc(ordersCollection, order).then(({ id }) => {
+        Swal.fire(
+          "¡Thank you for your purchase!",
+          `Your order number is: ${id}`,
+          'success'
+        )
+        clearCart();
+        setName("");
+        setSurname("");
+        setPhone("");
+        setEmail("");
+        setConfirmEmail("");
+      });
+    }
   };
 
   const handleConfirmEmail = () => {
@@ -72,61 +76,66 @@ const Checkout = () => {
             </tr>
           </tbody>
         </table>
-        <h2 className="text-xl font-semibold text-gray-900 my-6 flex justify-center">
-          Información de envío
-        </h2>
         <div className="flex justify-center">
-          <form className="max-w-md">
+          <form className="max-w-md bg-gray-400 p-10 rounded-lg">
+            <h2 className="text-xl font-semibold text-white my-6 flex justify-center">
+              Información de envío
+            </h2>
             <div className="mb-4 ">
               <label
                 htmlFor="name"
-                className="block text-gray-700 font-semibold mb-2"
+                className="block text-white font-semibold mb-2"
               >
                 Nombre:
               </label>
               <input
                 type="text"
                 placeholder="Nombre"
+                required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg border border-gray-400 text-gray-700 focus:outline-none focus:border-blue-500"
+                className="w-full px-3 py-2 rounded-lg border border-gray-400 text-gray-700 font-semibold focus:outline-none focus:border-blue-500"
               />
             </div>
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-white font-semibold mb-2">
               Apellido:
               <input
                 type="text"
                 placeholder="Apellido"
+                required
                 value={surname}
                 onChange={(e) => setSurname(e.target.value)}
                 className="w-full px-3 py-2 rounded-lg border border-gray-400 text-gray-700 focus:outline-none focus:border-blue-500"
               />
             </label>
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-white font-semibold mb-2">
               Teléfono:
               <input
                 type="tel"
                 placeholder="Teléfono"
+                required
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className="w-full px-3 py-2 rounded-lg border border-gray-400 text-gray-700 focus:outline-none focus:border-blue-500"
               />
             </label>
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-white font-semibold mb-2">
               Email:
               <input
                 type="email"
                 placeholder="Email"
+                required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-3 py-2 rounded-lg border border-gray-400 text-gray-700 focus:outline-none focus:border-blue-500"
               />
             </label>
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-white font-semibold mb-2">
               Confirmar Email:
               <input
                 type="email"
                 placeholder="Confirmar Email"
+                required
                 value={confirmEmail}
                 onChange={(e) => setConfirmEmail(e.target.value)}
                 onBlur={handleConfirmEmail}
@@ -134,7 +143,8 @@ const Checkout = () => {
               />
             </label>
             <button
-              className="bg-primary flex p-4 justify-center items-center text-white w-full font-medium rounded-lg transition duration-300 hover:scale-105"
+              className="bg-gray-600 flex p-4 justify-center items-center text-white w-full font-bold mt-10 rounded-lg transition duration-300 hover:scale-105"
+              type="submit"
               onClick={handleClick}
             >
               Comprar
