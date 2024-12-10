@@ -54,7 +54,7 @@ const Checkout = () => {
         <div className="flex items-center justify-center">
           <h1 className="text-3xl font-bold text-gray-900 mt-16 text-center border-b-2 border-black rounded-lg">Checkout</h1>
         </div>
-        <table className="w-full text-left border-collapse flex justify-center text-xl my-10">
+        <table className="w-full text-left border-collapse flex flex-col justify-center text-xl my-10">
           <thead>
             <tr >
               <th className="py-3 px-4 font-semibold text-gray-700 border-b-2">
